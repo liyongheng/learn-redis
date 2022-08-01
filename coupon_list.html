@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>优惠券列表</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <h3>优惠券列表</h3>
+    <table id="coupon-list" border="1" cellspacing="0px" style="border-collapse:collapse">
+    <th>优惠券名称</th><th>金额</th><th>数量</th><th>过期时间</th><th>创建时间</th><th>是否使用</th>
+    </table>
+
+    <script>
+        $(()=>{
+            let url = 'http://localhost/coupon.php';
+            $.post(url,{},(res)=>{
+                let data  = res.data;
+                if(data.length > 0){
+                    for(let i =0; i<data.length;i++){
+                        let coupon = data[i];
+                        let isUsed = coupon.status == 1 ? '已用' : '未用';
+                        let dataHtml = "<tr>";
+                        dataHtml += "<td>"+coupon.title+"</td>";
+                        dataHtml += "<td>"+coupon.price+"</td>";
+                        dataHtml += "<td>"+coupon.num+"</td>";
+                        dataHtml += "<td>"+coupon.expire_at +"</td>";
+                        dataHtml += "<td>"+coupon.created_time +"</td>";
+                        dataHtml += "<td>"+isUsed+"</td>";
+                        dataHtml += "</tr>"
+                        $("#coupon-list").append($(dataHtml));
+                    }
+                }
+            },'json')
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建优惠券</title>
+</head>
+<body>
+
+    <h3>创建优惠券</h3>
+    <form action="coupon.php?action=add" method="post">
+        <label for="">优惠券名称：</label><input type="text" name="title"><br>
+        <label for="">过期时间：</label><input type="date" name="expire_at"><br>
+        <label for="">金额：</label><input type="text" name="price"><br>
+        <label for="">数量：</label><input type="text" name="num"><br><br>
+        <input type="submit"  value="生成优惠券">
+    </form>
+    
+</body>
+</html>
